@@ -199,7 +199,7 @@ describe('server side testing', () => {
         });
       });
     });
-    
+
     describe('PATCHes ohoulihan /api/v1/goods/:id', () => {
       it('should let me PATCH cleanliness', (done) => {
         chai.request(server)
@@ -216,6 +216,61 @@ describe('server side testing', () => {
 
           thisPatch.cleanliness.should.equal('super');
           done();
+        });
+      });
+
+      it('should not let me patch an unkown ID', (done) => {
+        chai.request(server)
+        .patch('/api/v1/goods/12')
+        .send({
+          cleanliness: 'super'
+        })
+        .end((error, response) => {
+          response.should.have.status(404);
+          response.body.should.be.a('object');
+          response.body.error.should.equal('ID not found!');
+          done();          
+        });
+      });
+      it('should not let me patch with bogus data', (done) => {
+        chai.request(server)
+        .patch('/api/v1/goods/1')
+        .send({
+          bogusTown: 'super'
+        })
+        .end((error, response) => {
+          response.should.have.status(422);
+          response.body.should.be.a('object');
+          response.body.error.should.equal('Missing fields from request!');
+          done();          
+        });
+      });
+    });
+    describe('DELETE /api/v1/goods/:id', () => {
+      it('should let me delete a good if i feel like it!', (done) => {
+        chai.request(server)
+        .get('/api/v1/goods')
+        .then((goods) => {
+          goods.body.length.should.equal(3);
+        })
+        .then(() => {
+          chai.request(server)
+          .delete('/api/v1/goods/2')
+          .end((error, response) => {
+            response.should.have.status(200);
+            response.body.should.be.a('array');
+            response.body.length.should.equal(2);
+            done();
+          });
+        });
+      });
+
+      it('should not let me delete a nonexistent good even if i feel like it', () => {
+        chai.request(server)
+        .delete('/api/v1/goods/232')
+        .end((error, response) => {
+          response.should.have.status(404);
+          response.body.error.should.equal('ID not found!');
         });
       });
     });
