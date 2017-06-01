@@ -4,9 +4,7 @@ const loadHoardedJunk = () => {
   clearItems();
   fetch('/api/v1/goods')
   .then(goods => goods.json())
-  .then((goods) =>{
-    renderAllJunk(goods);
-  });
+  .then((goods) => renderAllJunk(goods));
 };
 
 const statusUpdate = (items) => {
@@ -93,10 +91,14 @@ $('#submit').on('click', (e) => {
 const patchCleanliness = (item) => {
   fetch(`/api/v1/goods/${item.id}`, {
     method: 'PATCH',
-    headers: {'Content-Type': 'application/json'}.
-    body: 
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      cleanliness: item.cleanliness
+    })
   })
-}
+  .then(response => response.json())
+  .then(() => loadHoardedJunk());
+};
 
 const renderItem = (item) => {
   $('.items').append(`
@@ -107,10 +109,10 @@ const renderItem = (item) => {
       <div class='rendered-inputs'>
         <button class='item-delete'>DELETE</button>
         <select class='item-cleanliness'>
-                  <option>UPDATE</otion>
-                  <option>Sparkling</option>
-                  <option>Dusty</option>
-                  <option>Rancid</option>
+          <option>UPDATE</otion>
+          <option>Sparkling</option>
+          <option>Dusty</option>
+          <option>Rancid</option>
         </select>
       </div>
     </div>
@@ -118,7 +120,36 @@ const renderItem = (item) => {
 };
 
 $('.items').on('click', '.item-delete', (e) => {
-  const id = e.target.closest('.appended-div').id
+  const id = e.target.closest('.appended-div').id;
   deleteItem(id);
 });
 
+$('.items').on('change', '.item-cleanliness', (e) => {
+  const id          = e.target.closest('.appended-div').id;
+  const cleanliness = e.target.value;
+  const item        =  { id, cleanliness };
+
+  patchCleanliness(item);
+});
+
+$('.a-z').on('click', () => sortFetch(sortA));
+
+$('.z-a').on('click', () => sortFetch(sortZ));
+
+const sortFetch = (sort) => {
+  fetch('/api/v1/goods')
+  .then(response => response.json())
+  .then(items => renderAllJunk(sort(items)));
+};
+
+const sortA = (items) => {
+  return items.sort((a, b) => {
+    return a.name > b.name;
+  });
+};
+
+const sortZ = (items) => {
+  return items.sort((a, b) => {
+    return b.name > a.name;
+  });
+};

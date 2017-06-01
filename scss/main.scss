@@ -9,7 +9,7 @@ body {
   font-size: 3em;
   text-align: center;
   color: $blizzard-blue;
-  margin: 10px;
+  padding: 20px;
   overflow-y: scroll;
   .span-receptacles {
     font-weight: $semi-bold;
@@ -104,5 +104,10 @@ body {
       }
     }
   }
+}
+
+.sort-btn {
+  @include appended-inputs;
+  text-align: center;
 }
 

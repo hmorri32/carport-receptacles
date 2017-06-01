@@ -6,7 +6,7 @@ body {
   font-size: 3em;
   text-align: center;
   color: #91E5F6;
-  margin: 10px;
+  padding: 20px;
   overflow-y: scroll; }
   .nav-h1 .span-receptacles {
     font-weight: 600;
@@ -122,3 +122,19 @@ body {
         -moz-appearance: none;
         appearance: none;
         background: url("../favicon.ico") 96%/15% no-repeat white; }
+
+.sort-btn {
+  margin: 10px;
+  text-align: left;
+  border: 1px solid #111;
+  background: white;
+  width: 120px;
+  padding: 5px 35px 5px 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("../favicon.ico") 96%/15% no-repeat white;
+  text-align: center; }
