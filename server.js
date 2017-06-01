@@ -23,6 +23,9 @@ app.use(error.notFound);
 
 app.use(error.devErrors);
 
-app.listen(app.get('port'));
+app.listen(app.get('port'), () => {
+/* eslint-disable no-console */
+  console.log(`It's ultra chill at ${app.get('port')}`);
+});
 
 
