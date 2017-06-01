@@ -10,3 +10,60 @@ $oswald: 'Oswald', sans-serif;
 $light: 300;
 $regular: 400;
 $semi-bold: 600;
+
+@mixin appended-inputs {
+  margin: 10px;
+  text-align: left;
+  border: 1px solid #111;
+  background: white;
+  width: 120px;
+  padding: 5px 35px 5px 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('../favicon.ico') 96% / 15% no-repeat white;
+}
+
+@mixin appended-div {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  white-space: pre-line;
+  border: 1px solid $lochmara;
+  margin: 10px;
+}
+
+@mixin input-styling {
+  margin: 20px;
+  text-align: center;
+  border: 1px solid #111;
+  background: white;
+  width: 150px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('../favicon.ico') 96% / 15% no-repeat white;
+}
+
+@mixin garage-door {
+  display: none;
+  background-image: url("../yung-garage.jpg");
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  top: 0%;
+  transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  -webkit-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
+  -ms-transition: all ease 0.5; 
+}

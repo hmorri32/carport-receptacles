@@ -16,14 +16,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; }
-
-.container {
-  display: flex;
-  justify-content: center;
-  height: 890px;
-  width: 900px;
-  position: relative;
-  overflow-x: hidden; }
+  .containers-container .container {
+    display: flex;
+    justify-content: center;
+    height: 890px;
+    width: 900px;
+    position: relative;
+    overflow-x: hidden; }
 
 .door-left, .door-right {
   display: none;
@@ -57,28 +56,27 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; }
-
-.nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2px;
-  overflow: scroll; }
-  .nav .select-cleanliness, .nav input, .nav #submit {
-    margin: 20px;
-    text-align: center;
-    border: 1px solid #111;
-    background: white;
-    width: 150px;
-    padding: 5px 35px 5px 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    height: 34px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: url("../favicon.ico") 96%/15% no-repeat white; }
+  .yung-content .nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    overflow: scroll; }
+    .yung-content .nav .select-cleanliness, .yung-content .nav input, .yung-content .nav #submit {
+      margin: 20px;
+      text-align: center;
+      border: 1px solid #111;
+      background: white;
+      width: 150px;
+      padding: 5px 35px 5px 5px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      height: 34px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background: url("../favicon.ico") 96%/15% no-repeat white; }
 
 .carport-stats label {
   padding: 10px; }
@@ -89,42 +87,38 @@ body {
   width: 800px;
   justify-content: center;
   align-items: center; }
-
-.appended-div {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  white-space: pre-line;
-  border: 1px solid #386FA4;
-  margin: 10px; }
-
-.item {
-  margin: 10px;
-  color: #004264; }
-
-.item-attr {
-  font-weight: 300;
-  color: #59A5D8; }
-
-.rendered-inputs {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; }
-
-.item-delete, .item-cleanliness {
-  margin: 10px;
-  text-align: left;
-  border: 1px solid #111;
-  background: white;
-  width: 120px;
-  padding: 5px 35px 5px 5px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  height: 34px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: url("../favicon.ico") 96%/15% no-repeat white; }
+  .items .item {
+    margin: 10px;
+    color: #004264; }
+  .items .item-attr {
+    font-weight: 300;
+    color: #59A5D8; }
+  .items .appended-div {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    white-space: pre-line;
+    border: 1px solid #386FA4;
+    margin: 10px; }
+    .items .appended-div .rendered-inputs {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      .items .appended-div .rendered-inputs .item-delete,
+      .items .appended-div .rendered-inputs .item-cleanliness {
+        margin: 10px;
+        text-align: left;
+        border: 1px solid #111;
+        background: white;
+        width: 120px;
+        padding: 5px 35px 5px 5px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        height: 34px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: url("../favicon.ico") 96%/15% no-repeat white; }
