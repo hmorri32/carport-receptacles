@@ -44,7 +44,7 @@ router.post('/api/v1/goods', (request, response) => {
 
   if (requiredGoods) {
     const newGood = request.body;
-    database('carport').insert(newGood, ['name', 'why_tho', 'cleanliness'])
+    database('carport').insert(newGood, ['id', 'name', 'why_tho', 'cleanliness'])
       .then(goods => response.status(201).json(goods))
       .catch(() => error.serverError(response));
   } else {
