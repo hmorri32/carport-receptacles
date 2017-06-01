@@ -1,18 +1,37 @@
-
-$(() => {
-  loadHoardedJunk();
-  resetInputs();
-});
+$(() => loadHoardedJunk());
 
 const loadHoardedJunk = () => {
+  clearItems();
   fetch('/api/v1/goods')
   .then(goods => goods.json())
-  .then((goods) => renderAllJunk(goods));
+  .then((goods) =>{
+    renderAllJunk(goods);
+  });
+};
+
+const statusUpdate = (items) => {
+  let cleanliness = { Sparkling: 0, Dusty: 0, Rancid: 0 };
+  items.forEach(item => {
+    cleanliness[item.cleanliness]++;
+  });
+
+  Object.keys(cleanliness).forEach(level => {
+    $(`.total-${level}`).text('');
+    $(`.total-${level}`).text(cleanliness[level]);
+  });
+
+  let totalItems = items.length;
+  $('.total-items-span').text(totalItems);
 };
 
 const renderAllJunk = (items) => {
-  $('.items').empty();
+  clearItems();
   items.map(item => renderItem(item));
+  statusUpdate(items);
+};
+
+const clearItems = () => {
+  $('.items').empty();
 };
 
 class JunkFactory {
@@ -53,14 +72,31 @@ const postItem = (item) => {
       })
     })
     .then(response => response.json())
-    .then(item => renderItem(item[0]));
+    .then(() => loadHoardedJunk());
   }
+};
+
+const deleteItem = (id) => {
+  fetch(`/api/v1/goods/${id}`, {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'}
+  })
+  .then(response => response.json())
+  .then(() => loadHoardedJunk());
 };
 
 $('#submit').on('click', (e) => {
   e.preventDefault();
   createItem();
 });
+
+const patchCleanliness = (item) => {
+  fetch(`/api/v1/goods/${item.id}`, {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'}.
+    body: 
+  })
+}
 
 const renderItem = (item) => {
   $('.items').append(`
@@ -80,3 +116,9 @@ const renderItem = (item) => {
     </div>
   `);
 };
+
+$('.items').on('click', '.item-delete', (e) => {
+  const id = e.target.closest('.appended-div').id
+  deleteItem(id);
+});
+
