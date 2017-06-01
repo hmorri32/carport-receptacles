@@ -4,11 +4,12 @@ const loadHoardedJunk = () => {
   clearItems();
   fetch('/api/v1/goods')
   .then(goods => goods.json())
-  .then((goods) => renderAllJunk(goods));
+  .then(goods => renderAllJunk(goods));
 };
 
 const statusUpdate = (items) => {
   let cleanliness = { Sparkling: 0, Dusty: 0, Rancid: 0 };
+  let totalItems  = items.length;
   items.forEach(item => {
     cleanliness[item.cleanliness]++;
   });
@@ -18,7 +19,6 @@ const statusUpdate = (items) => {
     $(`.total-${level}`).text(cleanliness[level]);
   });
 
-  let totalItems = items.length;
   $('.total-items-span').text(totalItems);
 };
 
@@ -40,7 +40,7 @@ class JunkFactory {
   }
 }
 
-const inputValue = () => {
+const inputsValue = () => {
   return $('#item-name').val() && $('#why-tho').val() ? true : false;
 };
 
@@ -59,7 +59,7 @@ const createItem = () => {
 };
 
 const postItem = (item) => {
-  if(inputValue()){
+  if(inputsValue()){
     fetch('/api/v1/goods', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -133,13 +133,12 @@ $('.items').on('change', '.item-cleanliness', (e) => {
 });
 
 $('.a-z').on('click', () => sortFetch(sortA));
-
 $('.z-a').on('click', () => sortFetch(sortZ));
 
 const sortFetch = (sort) => {
   fetch('/api/v1/goods')
-  .then(response => response.json())
-  .then(items => renderAllJunk(sort(items)));
+    .then(response => response.json())
+    .then(items => renderAllJunk(sort(items)));
 };
 
 const sortA = (items) => {
