@@ -2,8 +2,18 @@
 @import "variables";
 
 body {
-  background-color: $ultra-chic-periwinkle;
   font-family: $oswald
+}
+
+.nav-h1 {
+  font-size: 3em;
+  text-align: center;
+  color: $blizzard-blue;
+  margin: 10px;
+  .span-receptacles {
+    font-weight: $semi-bold;
+    color: $prussian-blue;
+  }
 }
 
 .containers-container {
@@ -15,11 +25,33 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 900px;
+  height: 890px;
   width: 900px;
   position: relative;
   overflow: hidden; 
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  select, input, #submit {
+    margin: 20px;
+    text-align: center;
+    border: 1px solid #111;
+    background: transparent;
+    width: 150px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('../favicon.ico') 96% / 15% no-repeat #eee;
+  }
 }
 
 .door-left, .door-right {
